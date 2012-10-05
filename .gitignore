@@ -7,4 +7,4 @@ deploy/*
 *.cache
 *.secret
 TestResults/
-_ReSharper.az
+_ReSharper.*
