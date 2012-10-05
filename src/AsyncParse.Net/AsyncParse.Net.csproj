@@ -52,6 +52,7 @@
     <Compile Include="Service\AsyncParseService.cs" />
     <Compile Include="Service\IParseRegistry.cs" />
     <Compile Include="Service\ParseCreatedFile.cs" />
+    <Compile Include="Service\SecurityKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

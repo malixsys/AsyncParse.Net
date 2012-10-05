@@ -80,6 +80,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\keys.secret.sample" />
     <None Include="Resources\Parse.png" />
   </ItemGroup>
   <ItemGroup>
