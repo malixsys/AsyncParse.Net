@@ -16,3 +16,6 @@
  
 **_IMPORTANT:_**  
 The values are delimited by a single `tab` character.
+
+### Thanks ###
+* [David Ebbo](http://blog.davidebbo.com/2011/04/easy-way-to-publish-nuget-packages-with.html)
