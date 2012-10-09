@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AsyncParse.Net")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("AsyncParse.Net is a library to enable access to Parse.com through the asynchronously-capable Microsoft .NET Framework 4 HTTP Client Libraries")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Morgan Stanley")]
+[assembly: AssemblyCompany("malix consulting")]
 [assembly: AssemblyProduct("AsyncParse.Net")]
-[assembly: AssemblyCopyright("Copyright © Morgan Stanley 2012")]
+[assembly: AssemblyCopyright("Copyright © malix consulting 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.8.09.*")]
+[assembly: AssemblyFileVersion("0.8.0.0")]
