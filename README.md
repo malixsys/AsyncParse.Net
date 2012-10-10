@@ -1,9 +1,3 @@
-# AsyncParse.Net #
-
-
-## Overview ##
-
-
 **AsyncParse.Net** is a library to enable access to [**Parse.com**](http://parse.com) through the asynchronously-capable [**Microsoft .NET Framework 4 HTTP Client Libraries**](https://nuget.org/packages/Microsoft.Net.Http). 
 
 ## Installing ##
