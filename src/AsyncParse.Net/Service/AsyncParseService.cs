@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -7,27 +9,35 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
 using AsyncParse.Net.BuiltIns;
+using AsyncParse.Net.Extensions;
 using AsyncParse.Net.Model;
 using Newtonsoft.Json;
 
 namespace AsyncParse.Net.Service
 {
-    public class AsyncParseService
+    public class AsyncParseService : IAsyncParseService
     {
-        private const string ZULU_DATE_REGEX = @":""(\d{4}-[0-1][0-9]-[0-3]\d{1}T[0-2]\d{1}:[0-5]\d{1}:[0-5]\d{1}.\d{1,3}Z)""";
-        private readonly JavaScriptSerializer _serializer;
+        private readonly ParseSerializer _serializer;
         private readonly SecurityKeys _securityKeys;
-
-        public AsyncParseService(JavaScriptSerializer serializer, string applicationId, string masterKey)
+        
+        public AsyncParseService(ParseSerializer serializer_, string applicationId, string masterKey)
+            : this(new SecurityKeys(applicationId, masterKey))
         {
-            _serializer = serializer;
-            _securityKeys = new SecurityKeys(applicationId, masterKey);
-
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            //ServicePointManager.Expect100Continue = false;
+            _serializer = serializer_;
         }
 
-        internal AsyncCallResult<T> Call<T>(string className, object criteria, Func<AsyncClient, CancellationToken, Task<HttpResponseMessage>> innerCall, JsonSerializerSettings settings = null)
+        public AsyncParseService(string applicationId, string masterKey)
+        {
+            _serializer = new ParseSerializer();
+        }
+
+        private AsyncParseService(SecurityKeys securityKeys_)
+        {
+            _securityKeys = securityKeys_;
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+        }
+
+        internal AsyncCallResult<T> Call<T>(string className, object criteria, Func<IAsyncClient, CancellationToken, Task<HttpResponseMessage>> innerCall, JsonSerializerSettings settings = null)
             where T : class
         {
             var source = new CancellationTokenSource();
@@ -55,7 +65,7 @@ namespace AsyncParse.Net.Service
                     {
                         return new AsyncCallResult<T>(AsyncCallFailureReason.FailedStatusCode);
                     }
-                    var serializer = JsonSerializer.Create(settings ?? new JsonSerializerSettings());
+
                     var content = task.Result.Content.ReadAsStreamAsync();
                     if (content.Wait(250, token) == false)
                     {
@@ -69,11 +79,10 @@ namespace AsyncParse.Net.Service
                     {
                         using (var jsonTextReader = new JsonTextReader(streamReader))
                         {
-                            var obj = serializer.Deserialize<T>(jsonTextReader);
+                            var obj = _serializer.Deserialize<T>(jsonTextReader);
                             return new AsyncCallResult<T>(AsyncCallFailureReason.None, obj);
                         }
                     }
-
                 }
             }
         }
@@ -85,7 +94,7 @@ namespace AsyncParse.Net.Service
             return new ParseRegistry<T>(this, className_);
         }
 
-        public bool CallNoReturn(string className, object criteria, Func<AsyncClient, CancellationToken, Task<HttpResponseMessage>> innerCall)
+        internal bool CallNoReturn(string className, object criteria, Func<IAsyncClient, CancellationToken, Task<HttpResponseMessage>> innerCall)
         {
             var source = new CancellationTokenSource();
             var token = source.Token;
@@ -106,7 +115,22 @@ namespace AsyncParse.Net.Service
             }
         }
 
-        public AsyncCallResult<ParseCreatedFile> CreateFile(HttpPostedFileBase fileName, JsonSerializerSettings settings = null)
+        public ParseCreatedFile SaveFile(HttpPostedFileBase filename)
+        {
+            var result = CreateFile(filename);
+            if (result.Failed())
+            {
+                return null;
+            }
+            return result.Contents;
+        }
+
+        public bool DeleteFile(string name)
+        {
+            return CallNoReturn("files", name, (c, t) => c.Delete(t));
+        }
+
+        internal AsyncCallResult<ParseCreatedFile> CreateFile(HttpPostedFileBase fileName, JsonSerializerSettings settings = null)
         {
             var source = new CancellationTokenSource();
             var token = source.Token;

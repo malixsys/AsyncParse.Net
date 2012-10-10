@@ -52,19 +52,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuiltIns\GeoPoint.cs" />
+    <Compile Include="BuiltIns\ParseDate.cs" />
     <Compile Include="BuiltIns\ParseObject.cs" />
     <Compile Include="BuiltIns\Pointer.cs" />
+    <Compile Include="Converters\ParseDateJsonConverter.cs" />
     <Compile Include="Extensions\ParseExtensions.cs" />
+    <Compile Include="Model\GetListResponse.cs" />
     <Compile Include="Model\ValueBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\AsyncCallResult.cs" />
     <Compile Include="Model\AsyncClient.cs" />
     <Compile Include="Service\AsyncParseService.cs" />
+    <Compile Include="Model\IAsyncClient.cs" />
+    <Compile Include="Converters\GeoPointJsonConverter.cs" />
+    <Compile Include="Service\IAsyncParseService.cs" />
     <Compile Include="Service\IParseRegistry.cs" />
     <Compile Include="Model\ParseCreatedFile.cs" />
     <Compile Include="Model\SecurityKeys.cs" />
-    <Compile Include="Model\ParseRegistry.cs" />
+    <Compile Include="Service\ParseRegistry.cs" />
     <Compile Include="Service\ParseSerializer.cs" />
+    <Compile Include="Converters\PointerJsonConverter.cs" />
+    <Compile Include="Converters\ZuluDateTimeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -14,7 +14,5 @@ namespace AsyncParse.Net.Service
         T Get(string objectId);
         bool Update(T original, object modifieds);
         bool Delete(ParseObject item);
-        ParseCreatedFile SaveFile(HttpPostedFileBase filename);
-        bool DeleteFile(string name);
     }
 }

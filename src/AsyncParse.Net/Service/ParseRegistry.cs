@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using AsyncParse.Net.BuiltIns;
 using AsyncParse.Net.Extensions;
@@ -7,7 +6,7 @@ using AsyncParse.Net.Model;
 
 namespace AsyncParse.Net.Service
 {
-    public class ParseRegistry<T> : IParseRegistry<T> 
+    internal class ParseRegistry<T> : IParseRegistry<T> 
         where T : ParseObject
     {
         private readonly AsyncParseService _parse;
@@ -73,19 +72,5 @@ namespace AsyncParse.Net.Service
             return _parse.CallNoReturn(_className, original.objectId, (c, t) => c.Delete(t));
         }
 
-        public ParseCreatedFile SaveFile(HttpPostedFileBase filename)
-        {
-            var result = _parse.CreateFile(filename);
-            if (result.Failed())
-            {
-                return null;
-            }
-            return result.Contents;
-        }
-
-        public bool DeleteFile(string name)
-        {
-            return _parse.CallNoReturn("files", name, (c, t) => c.Delete(t));
-        }
     }
 }

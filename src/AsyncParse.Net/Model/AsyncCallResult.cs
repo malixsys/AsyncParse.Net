@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AsyncParse.Net.Model
+﻿namespace AsyncParse.Net.Model
 {
     public class AsyncCallResult<T>
         where T : class
@@ -15,10 +13,6 @@ namespace AsyncParse.Net.Model
 
         public T Contents { get; private set; }
 
-        public AsyncCallResult()
-        {
-        }
-
         public AsyncCallFailureReason FailureReason
         {
             get { return _asyncCallFailureReason; }
@@ -32,24 +26,5 @@ namespace AsyncParse.Net.Model
         ResultsNotFound,
         FailedStatusCode,
         FailedConnection
-    }
-
-    public class DeleteResponse
-    {
-        public bool Success { get; set; }
-    }
-
-    public class GetListResponse<T>
-    {
-        public List<T> Results;
-
-        public int Count
-        {
-            get { return Results == null ? 0 : Results.Count; }
-        }
-        public T this[int i_]
-        {
-            get { return Results == null || Results.Count <= i_ ? default(T) : Results[i_]; }
-        }
     }
 }

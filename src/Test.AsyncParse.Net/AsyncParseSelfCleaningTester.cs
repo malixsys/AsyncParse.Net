@@ -127,9 +127,19 @@ namespace Test.AsyncParse.Net
 
     public class TestPoint : ParseObject
     {
+        public string runId { get; set; }
         public string id { get; set; }
-        public string color { get; set; }
+        public TestPointProp prop { get; set; }
         public int index { get; set; }
+        public DateTime timestamp { get; set; }
+        public GeoPoint location { get; set; }
+        public Pointer related { get; set; }
+        public ParseDate parseDate { get; set; }
+    }
+
+    public class TestPointProp : ValueBase
+    {
+        
     }
 
 }
