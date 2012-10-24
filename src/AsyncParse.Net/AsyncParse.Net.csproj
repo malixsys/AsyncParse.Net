@@ -75,6 +75,7 @@
     <Compile Include="Converters\ZuluDateTimeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AsyncParse.Net.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
