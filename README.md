@@ -15,5 +15,10 @@
 **_IMPORTANT:_**  
 The values are delimited by a single `tab` character.
 
-### Thanks ###
+## Versions ##
+* `0.8.11`  fixed a problem with one AsyncParseService constructor
+* `0.8.10`  Refactored some API namespaces for consistency
+* `0.8.9 `  Initial package creation
+
+## Thanks ##
 * [David Ebbo](http://blog.davidebbo.com/2011/04/easy-way-to-publish-nuget-packages-with.html)
