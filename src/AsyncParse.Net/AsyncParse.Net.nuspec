@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/malixsys/AsyncParse.Net</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial package creation</releaseNotes>
-    <copyright>Copyright 2012</copyright>
+    <releaseNotes>fixed a problem with one AsyncParseService constructor</releaseNotes>
+    <copyright>Copyright © malix consulting 2012</copyright>
     <tags>parse.com client async nosql database</tags>
   </metadata>
 </package>
