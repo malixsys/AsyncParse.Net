@@ -27,6 +27,7 @@ namespace AsyncParse.Net.Service
         }
 
         public AsyncParseService(string applicationId, string masterKey)
+            : this(new SecurityKeys(applicationId, masterKey))
         {
             _serializer = new ParseSerializer();
         }

@@ -35,7 +35,7 @@ namespace Test.AsyncParse.Net
                              };
             var json = ToJson(ser, source);
             Assert.AreEqual(
-                "{\"related\":{\"__type\":\"Pointer\",\"className\":\"Users\",\"objectId\":\"deaIBwVQd5\"},\"parseDate\":{\"__type\":\"Date\",\"iso\":\"2013-12-14T10:09:11.456Z\"},\"runId\":\"1286fca346034ad9a49fb49b06f9999b\",\"id\":\"1\",\"prop\":\"3\",\"index\":2,\"timestamp\":\"2013-12-14T10:09:11.456Z\",\"location\":{\"__type\":\"GeoPoint\",\"latitude\":45.50867,\"longitude\":-73.553992},\"objectId\":null,\"createdAt\":\"0001-01-01T00:00:00.000Z\",\"updatedAt\":\"0001-01-01T00:00:00.000Z\"}",
+                "{\"runId\":\"1286fca346034ad9a49fb49b06f9999b\",\"id\":\"1\",\"prop\":\"3\",\"index\":2,\"timestamp\":\"2013-12-14T10:09:11.456Z\",\"location\":{\"__type\":\"GeoPoint\",\"latitude\":45.50867,\"longitude\":-73.553992},\"related\":{\"__type\":\"Pointer\",\"className\":\"Users\",\"objectId\":\"deaIBwVQd5\"},\"parseDate\":{\"__type\":\"Date\",\"iso\":\"2013-12-14T10:09:11.456Z\"},\"objectId\":null,\"createdAt\":\"0001-01-01T00:00:00.000Z\",\"updatedAt\":\"0001-01-01T00:00:00.000Z\"}",
                 json);
 
 

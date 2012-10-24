@@ -23,7 +23,7 @@ namespace Test.AsyncParse.Net
         [TestInitialize]
         public void MyTestInitialize()
         {
-            var secrets = Secrets.keys_secret.Split('\t');
+            var secrets = Secrets.Keys.Split('\t');
             _parse = new AsyncParseService(secrets[0], secrets[1]);
         }
 
